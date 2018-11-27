@@ -17,7 +17,6 @@ const resolvers = {
     feed: () => links
   },
   Mutation: {
-    // 2
     post: (root, args) => {
       const link = {
         id: `link-${idCount++}`,
@@ -28,12 +27,26 @@ const resolvers = {
       return link;
     },
     updateLink: (_, args) => {
-      const newLink = {
-        ...prevLink,
-        description: args.description,
-        url: args.url
-      };
+      let newLink;
+      links = links.map(link => {
+        if (link.id === args.id) {
+          newLink = {
+            ...link,
+            description: args.description ? args.description : link.description,
+            url: args.url ? args.url : link.url
+          };
+          return newLink;
+        }
+        return link;
+      });
       return newLink;
+    },
+    deleteLink: (_, args) => {
+      let deletedLink = links.filter(link => link.id === args.id)[0];
+      links = links.filter(link => link.id !== args.id);
+      console.log("links", links);
+      console.log("deletedLink", deletedLink);
+      return deletedLink;
     }
   }
 };
