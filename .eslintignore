@@ -1,0 +1,11 @@
+_*
+!__*
+/app/system/
+/app/flow-typed/drift
+/app/flow-typed/npm
+/src/flow-typed/npm
+/src/polyfill/console.js
+/src/polyfill/es5-sham.js
+/src/polyfill/es5-shim.js
+/interfaces/
+/node_modules/
