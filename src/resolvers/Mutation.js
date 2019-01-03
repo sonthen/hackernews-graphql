@@ -45,4 +45,25 @@ async function updateLink(parent, args, context, info) {
 function deleteLink(parent, args, context, info) {
   return context.prisma.deleteLink(args, info);
 }
-export {signup, login, createLink, updateLink, deleteLink};
+
+async function vote(parent, args, context) {
+  // 1
+  const userId = getUserId(context);
+
+  // 2
+  const linkExists = await context.prisma.$exists.vote({
+    user: {id: userId},
+    link: {id: args.linkId},
+  });
+  if (linkExists) {
+    throw new Error(`Already voted for link: ${args.linkId}`);
+  }
+
+  // 3
+  return context.prisma.createVote({
+    user: {connect: {id: userId}},
+    link: {connect: {id: args.linkId}},
+  });
+}
+
+export {signup, login, createLink, updateLink, deleteLink, vote};
