@@ -10,6 +10,8 @@ async function feed(parent, args, context) {
 
   const links = await context.prisma.links({
     where,
+    skip: args.skip,
+    first: args.first,
   });
   return links;
 }
