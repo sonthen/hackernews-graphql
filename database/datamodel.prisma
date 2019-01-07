@@ -3,8 +3,8 @@ type Link {
   createdAt: DateTime!
   description: String!
   url: String!
-  postedBy: User
-  votes: [Vote!]!
+  postedBy: User @relation(name: "UserLink", onDelete: SET_NULL)
+  votes: [Vote!]! @relation(name: "LinkVote", onDelete: CASCADE)
 }
 
 type User {
@@ -12,12 +12,12 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  links: [Link!]!
-  votes: [Vote!]!
+  links: [Link!]! @relation(name: "UserLink", onDelete: CASCADE)
+  votes: [Vote!]! @relation(name: "UserVote", onDelete: CASCADE)
 }
 
 type Vote {
   id: ID! @unique
-  link: Link!
-  user: User!
+  link: Link! @relation(name: "LinkVote", onDelete: SET_NULL)
+  user: User! @relation(name: "UserVote", onDelete: SET_NULL)
 }
