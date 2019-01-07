@@ -1,6 +1,11 @@
 type Query {
   info: String!
-  feed(filter: String, skip: Int, first: Int): [Link!]!
+  feed(
+    filter: String
+    skip: Int
+    first: Int
+    orderBy: LinkOrderByInput
+  ): [Link!]!
   link(id: ID!): Link
 }
 type Mutation {
@@ -50,4 +55,13 @@ input IDInput {
 input UpdateLinkInput {
   url: String
   description: String
+}
+
+enum LinkOrderByInput {
+  description_ASC
+  description_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
