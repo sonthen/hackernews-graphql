@@ -1,22 +1,20 @@
-// @flow
-
 import {GraphQLServer} from 'graphql-yoga';
 import {prisma} from './generated/prisma-client';
 
 import * as Query from './resolvers/Query';
-import * as Mutation from './resolvers/Mutation';
-import * as User from './resolvers/User';
-import * as Link from './resolvers/Link';
-import * as Subscription from './resolvers/Subscription';
-import * as Vote from './resolvers/Vote';
+import Mutation from './resolvers/Mutation';
+import Subscription from './resolvers/Subscription';
+import User from './resolvers/User';
+import Link from './resolvers/Link';
+import Vote from './resolvers/Vote';
 
 const resolvers = {
   Query,
-  Mutation,
-  Subscription,
-  User,
-  Link,
-  Vote,
+  Mutation: {...Mutation},
+  Subscription: {...Subscription},
+  User: {...User},
+  Link: {...Link},
+  Vote: {...Vote},
 };
 
 const server = new GraphQLServer({

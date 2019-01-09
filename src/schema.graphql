@@ -1,12 +1,12 @@
 type Query {
   info: String!
   feed(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Feed!
-  feed(
-    filter: String
-    skip: Int
-    first: Int
-    orderBy: LinkOrderByInput
-  ): [Link!]!
+  # feed(
+  #   filter: String
+  #   skip: Int
+  #   first: Int
+  #   orderBy: LinkOrderByInput
+  # ): [Link!]!
   link(id: ID!): Link
 }
 type Mutation {
