@@ -1303,4 +1303,9 @@ export const models: Model[] = [
  * Type Defs
  */
 
-export const prisma: Prisma;
+export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
+  typeDefs,
+  models,
+  endpoint: `https://eu1.prisma.sh/jason-thenneil/hackernews-node/experiment`
+});
+export const prisma = new Prisma();

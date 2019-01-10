@@ -1,5 +1,4 @@
-module.exports = {
-        typeDefs: /* GraphQL */ `type AggregateLink {
+export const typeDefs = /* GraphQL */ `type AggregateLink {
   count: Int!
 }
 
@@ -741,5 +740,3 @@ input VoteWhereUniqueInput {
   id: ID
 }
 `
-      }
-    

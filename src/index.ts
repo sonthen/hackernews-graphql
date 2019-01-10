@@ -7,19 +7,21 @@ import Subscription from './resolvers/Subscription';
 import User from './resolvers/User';
 import Link from './resolvers/Link';
 import Vote from './resolvers/Vote';
+import resolvers from './generated/tmp-resolvers';
 
-const resolvers = {
-  Query,
-  Mutation: {...Mutation},
-  Subscription: {...Subscription},
-  User: {...User},
-  Link: {...Link},
-  Vote: {...Vote},
-};
+// const resolvers = generatedResolver;
+// {
+//   Query,
+//   Mutation: {...Mutation},
+//   Subscription: {...Subscription},
+//   User: {...User},
+//   Link: {...Link},
+//   Vote: {...Vote},
+// };
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
-  resolvers,
+  resolvers: resolvers as any,
   context: (request) => {
     return {
       ...request,
